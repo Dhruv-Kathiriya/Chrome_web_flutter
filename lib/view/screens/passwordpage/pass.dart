@@ -142,66 +142,56 @@ class _PassPageState extends State<PassPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          padding: EdgeInsets.only(
-                              left: 25.sp,
-                              top: 5.sp,
-                              bottom: 5.sp,
-                              right: 25.sp),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5.sp),
-                            border: Border.all(
-                              color: Colors.grey,
-                            ),
+                        TextFormField(
+                          controller: passwordController,
+                          obscureText: isPassword,
+                          obscuringCharacter: '.',
+                          textInputAction: TextInputAction.done,
+                          textAlign: TextAlign.start,
+                          validator: (val) =>
+                              (val!.isEmpty) ? "Enter your password..." : null,
+                          onSaved: (val) {
+                            password = val!;
+                          },
+                          style: const TextStyle(
+                            color: Colors.black,
                           ),
-                          child: TextFormField(
-                            controller: passwordController,
-                            obscureText: isPassword,
-                            obscuringCharacter: '.',
-                            textInputAction: TextInputAction.done,
-                            textAlign: TextAlign.start,
-                            validator: (val) => (val!.isEmpty)
-                                ? "Enter your password..."
-                                : null,
-                            onSaved: (val) {
-                              password = val!;
-                            },
-                            style: const TextStyle(
-                              color: Colors.black,
-                            ),
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  isPassword = !isPassword;
-                                  setState(() {});
-                                },
-                                icon: Icon((!isPassword)
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                              ),
-                              labelText: "Enter Your Password",
-                              labelStyle: TextStyle(
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            // suffixIcon: IconButton(
+                            //   onPressed: () {
+                            //     isPassword = !isPassword;
+                            //     setState(() {});
+                            //   },
+                            //   icon: Icon((!isPassword)
+                            //       ? Icons.visibility
+                            //       : Icons.visibility_off),
+                            // ),
+                            labelText: "Enter Your Password",
+                            focusedBorder: const OutlineInputBorder(),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
                                 color: Colors.grey,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
-                                letterSpacing: 1,
                               ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.redAccent,
-                                  width: 1,
-                                ),
-                                borderRadius: BorderRadius.circular(14),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.redAccent,
+                                width: 2,
                               ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Colors.redAccent,
-                                  width: 2,
-                                ),
-                                borderRadius: BorderRadius.circular(14),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            labelStyle: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16.sp,
+                              letterSpacing: 1,
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                color: Colors.redAccent,
+                                width: 1,
                               ),
-                              border: InputBorder.none,
+                              borderRadius: BorderRadius.circular(14),
                             ),
                           ),
                         ),
@@ -212,9 +202,9 @@ class _PassPageState extends State<PassPage> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Checkbox(
-                                value: pass,
+                                value: isPassword,
                                 onChanged: (val) {
-                                  pass = val!;
+                                  isPassword = val!;
                                   setState(() {});
                                 }),
                             const Text("Show Password"),
@@ -272,38 +262,36 @@ class _PassPageState extends State<PassPage> {
             padding: EdgeInsets.only(top: 20.dg),
             child: Row(
               children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 235.dg),
+                const Spacer(
+                  flex: 2,
+                ),
+                Container(
+                  height: 20.h,
+                  width: 150.w,
+                  color: Colors.white,
                   child: Container(
-                    height: 20.h,
-                    width: 150.w,
+                    height: 15.h,
+                    width: 25.w,
                     color: Colors.white,
-                    child: Container(
-                      height: 15.h,
-                      width: 25.w,
-                      color: Colors.white,
-                      child: TextButton(
-                        onPressed: () => showPicker(),
-                        child: Row(
-                          children: [
-                            Text(
-                              "English (United States)",
-                              style: TextStyle(
-                                  fontSize: 10.sp, color: Colors.black),
-                            ),
-                            Icon(
-                              Icons.arrow_drop_up,
-                              size: 15.sp,
-                            ),
-                          ],
-                        ),
+                    child: TextButton(
+                      onPressed: () => showPicker(),
+                      child: Row(
+                        children: [
+                          Text(
+                            "English (United States)",
+                            style:
+                                TextStyle(fontSize: 10.sp, color: Colors.black),
+                          ),
+                          Icon(
+                            Icons.arrow_drop_up,
+                            size: 15.sp,
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 200.w,
-                ),
+                const Spacer(),
                 Text(
                   "Help",
                   style: TextStyle(
@@ -333,6 +321,9 @@ class _PassPageState extends State<PassPage> {
                     color: Colors.grey,
                     fontWeight: FontWeight.bold,
                   ),
+                ),
+                const Spacer(
+                  flex: 2,
                 ),
               ],
             ),

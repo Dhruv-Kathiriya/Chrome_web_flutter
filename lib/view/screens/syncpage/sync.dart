@@ -173,9 +173,7 @@ class _SyncPageState extends State<SyncPage> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 450.w,
-                ),
+                const Spacer(),
                 GestureDetector(
                   onTap: () {
                     Navigator.pushNamed(context, Routes.propage);
@@ -214,7 +212,7 @@ class _SyncPageState extends State<SyncPage> {
                   ),
                   child: Center(
                     child: Text(
-                      "Settings",
+                      "No,thanks",
                       style: TextStyle(
                         fontSize: 8.sp,
                         color: const Color(0xff1A73E8),

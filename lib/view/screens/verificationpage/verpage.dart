@@ -126,8 +126,12 @@ class _VerPageState extends State<VerPage> {
                       ),
                       Container(
                         height: 200.h,
-                        width: 550.w,
-                        color: Colors.blue,
+                        width: 750.w,
+                        color: Colors.white,
+                        child: Image.network(
+                          "assets/image/verimage/1.png",
+                          fit: BoxFit.contain,
+                        ),
                       ),
                       SizedBox(
                         height: 10.h,

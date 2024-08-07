@@ -25,24 +25,25 @@ class _SignPageState extends State<SignPage> {
   Country country = CountryParser.parseCountryCode('IN');
   void showPicker() {
     showCountryPicker(
-        context: context,
-        favorite: ['IN', 'US', 'CA'],
-        countryListTheme: const CountryListThemeData(
-          bottomSheetHeight: 600,
-          backgroundColor: Colors.white,
-          inputDecoration: InputDecoration(
-            prefixIcon: Icon(
-              Icons.search,
-              color: Colors.black,
-            ),
-            hintText: ("Serch Your Country here... "),
+      context: context,
+      favorite: ['IN', 'US', 'CA'],
+      countryListTheme: const CountryListThemeData(
+        bottomSheetHeight: 600,
+        backgroundColor: Colors.white,
+        inputDecoration: InputDecoration(
+          prefixIcon: Icon(
+            Icons.search,
+            color: Colors.black,
           ),
+          hintText: ("Serch Your Country here... "),
         ),
-        onSelect: (country) {
-          setState(() {
-            this.country = country;
-          });
+      ),
+      onSelect: (country) {
+        setState(() {
+          this.country = country;
         });
+      },
+    );
   }
 
   @override
@@ -116,14 +117,18 @@ class _SignPageState extends State<SignPage> {
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
                                 hintText: "Email or Phone ",
-                                hintStyle: TextStyle(
-                                  fontWeight: FontWeight.bold,
+                                hintStyle: const TextStyle(
                                   color: Colors.grey,
                                 ),
                                 labelText: ("Email or Phone"),
-                                focusedBorder: OutlineInputBorder(),
-                                focusedErrorBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(),
+                                enabledBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: const BorderSide(
                                     color: Colors.redAccent,
                                     width: 2,
                                   ),
@@ -135,6 +140,12 @@ class _SignPageState extends State<SignPage> {
                                   return 'Please enter your email';
                                 }
                                 if (!value.contains('@')) {
+                                  return 'Please enter a valid email';
+                                }
+                                if (!value.contains('gmail')) {
+                                  return 'Please enter a valid email';
+                                }
+                                if (!value.contains('.com')) {
                                   return 'Please enter a valid email';
                                 }
                                 return null;
@@ -236,38 +247,36 @@ class _SignPageState extends State<SignPage> {
                 padding: EdgeInsets.only(top: 20.dg),
                 child: Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 235.dg),
+                    const Spacer(
+                      flex: 2,
+                    ),
+                    Container(
+                      height: 20.h,
+                      width: 150.w,
+                      color: Colors.white,
                       child: Container(
-                        height: 20.h,
-                        width: 150.w,
+                        height: 15.h,
+                        width: 25.w,
                         color: Colors.white,
-                        child: Container(
-                          height: 15.h,
-                          width: 25.w,
-                          color: Colors.white,
-                          child: TextButton(
-                            onPressed: () => showPicker(),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "English (United States)",
-                                  style: TextStyle(
-                                      fontSize: 10.sp, color: Colors.black),
-                                ),
-                                Icon(
-                                  Icons.arrow_drop_up,
-                                  size: 15.sp,
-                                ),
-                              ],
-                            ),
+                        child: TextButton(
+                          onPressed: () => showPicker(),
+                          child: Row(
+                            children: [
+                              Text(
+                                "English (United States)",
+                                style: TextStyle(
+                                    fontSize: 10.sp, color: Colors.black),
+                              ),
+                              Icon(
+                                Icons.arrow_drop_up,
+                                size: 15.sp,
+                              ),
+                            ],
                           ),
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 200.w,
-                    ),
+                    const Spacer(),
                     Text(
                       "Help",
                       style: TextStyle(
@@ -297,6 +306,9 @@ class _SignPageState extends State<SignPage> {
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                       ),
+                    ),
+                    const Spacer(
+                      flex: 2,
                     ),
                   ],
                 ),

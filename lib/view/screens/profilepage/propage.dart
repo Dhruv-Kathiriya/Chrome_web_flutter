@@ -283,6 +283,7 @@ class _ProPageState extends State<ProPage> {
                   child: Column(
                     children: [
                       CircleAvatar(
+                        backgroundColor: const Color(0xff44474E),
                         radius: 25.w,
                         child: Image.network(
                           e['image'],
@@ -309,36 +310,31 @@ class _ProPageState extends State<ProPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ...pro2.map(
-                (e) => Column(
-                  children: [
-                    Container(
-                        height: 50.h,
-                        width: 50.w,
-                        decoration: BoxDecoration(
-                          color: const Color(0xff44474E),
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              e['image'].toString(),
-                            ),
-                          ),
+                (e) => Padding(
+                  padding: const EdgeInsets.only(left: 80),
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 25.w,
+                        backgroundColor: const Color(0xff44474E),
+                        child: Image.network(
+                          e['image'],
+                          height: 25.h,
                         ),
-                        child: Icon(e['icon'])),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    Text(
-                      e['name'],
-                      style: TextStyle(color: Colors.white, fontSize: 10.sp),
-                    ),
-                    SizedBox(
-                      width: 100.w,
-                    ),
-                  ],
+                      ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      Text(
+                        e['name'],
+                        style: TextStyle(color: Colors.white, fontSize: 10.sp),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
-                width: 25.w,
+                width: 55.w,
               ),
               Padding(
                 padding: EdgeInsets.only(right: 12.sp),
@@ -365,7 +361,7 @@ class _ProPageState extends State<ProPage> {
                     ),
                   ],
                 ),
-              )
+              ),
             ],
           ),
           SizedBox(
@@ -415,7 +411,7 @@ class _ProPageState extends State<ProPage> {
                       const Text(
                         "Customize Chorme",
                         style: TextStyle(color: Colors.white),
-                      )
+                      ),
                     ],
                   ),
                 ),
